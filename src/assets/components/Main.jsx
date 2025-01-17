@@ -4,12 +4,19 @@ const Main = () => {
 
   const [title, setTitle] = useState('')
   
+  const handlerSubmit = (e) => {
+    e.preventDefault()
+    console.log(title);
+    
+  }
+
+  const postArray = []
 
   return (
     <main>
       <div className='container-md py-5'>
         <h2 className="my-3 pb-3">Aggiungi un nuovo articolo</h2>
-      <form action="#">
+      <form action="#" onSubmit={handlerSubmit}>
         <input 
         placeholder="Inserisci un titolo"
         value={title}

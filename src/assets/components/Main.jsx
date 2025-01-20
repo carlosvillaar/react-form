@@ -1,16 +1,18 @@
 import { useState } from "react"
+import blogPosts from "../../../data/blogPosts"
 
 const Main = () => {
 
-  const [title, setTitle] = useState('')
-  
-  const handlerSubmit = (e) => {
-    e.preventDefault()
-    console.log(title);
-    
-  }
+  const [newTitle, setNewTitle] = useState('')
 
-  const postArray = []
+  const handlerSubmit = (e) => {
+    e.preventDefault
+    blogPosts.push({
+      id: Date.now(),
+      title: newTitle
+    })
+    setNewTitle('')
+  }
 
   return (
     <main>
@@ -19,13 +21,24 @@ const Main = () => {
       <form action="#" onSubmit={handlerSubmit}>
         <input 
         placeholder="Inserisci un titolo"
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
+        value={newTitle}
+        onChange={(e) => setNewTitle(e.target.value)}
         type="text" 
         />
-        <button type='submit' className='btn btn-lg btn-success mx-5'>Aggiungi</button>
+        <button
+        type='submit'
+        className='btn btn-lg btn-success mx-5'>Aggiungi</button>
       </form>
       <h3 className='my-5'>Lista dei post:</h3>
+      <ul className="list-group">
+      {blogPosts.map(post => (
+        <li 
+        className="list-group-item" 
+        key={post.id}>
+          {post.title}
+        </li>
+      ))}
+      </ul>
     </div>
     </main>
   )
